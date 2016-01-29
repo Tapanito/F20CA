@@ -1,0 +1,29 @@
+public <top> = (<request> | <response>) [<polite>]
+
+<request> = [<greeting>] [please] (<direction> | <browse>)
+<direction> = (I <want> to <buy> [<det>] <item> ) | (<way> <place>){command=direction}
+
+<browse> = (What | How many) [<shop_type>] shops are (there | available){comand=browse}
+<response> = <confirm> | [(Which | Where) <aux_verb> | Show me] [<det>] <distance> | <item> | <food_drink_desc>
+
+<way> = ([(Can | Could) you] <explain> <direction> to) | Where <aux_verb>
+<greeting> = Hello | Hi | Hey 
+<confirm> = <yes> | <no>
+<yes> = Yes | Yeah | Yep | Okay {confirm = yes}
+<no> = No | Nope | Nah | Not really {confirm = no}
+<explain> = (explain to | tell) me
+<direction> = how to get | the (way | direction) 
+<want> = want | would like | wish 
+<buy> = buy | purchase | get 
+<polite> =  kindly | thank you | please
+<shop_type> = coffee | clothes | sandwich | toy | book | music | sport | jewellery | department
+<item> = coffee | clothes | sandwiches | toys | music | jewellery | sports equipment
+<shop> = [<shop_type>] shop
+<amenity> = ([mens | womens] toilet) | exit
+<place> = <det> (<shop> | <amenity> | <proximity>)
+<proximity> <close_by> | <far_away>
+<close_by> = closest | nearest {proximity = close}
+<far_away> = furthest {proximity = far}
+<food_drink_desc> = hot | cold | fast | cooked
+<det> = a | an | the | some
+<aux_verb> = is
