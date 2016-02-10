@@ -175,4 +175,43 @@
 		</one-of>
 	</rule>
 
+	<rule id="proximity">
+		<one-of>
+			<item><ruleref uri="close_by"/></item>
+			<item><ruleref uri="far_away"/></item>
+		</one-of>
+	</rule>
+
+	<rule id="close_by">
+		<one-of>
+			<item>closest</item>
+			<item>nearest</item>
+		</one-of>
+	</rule>
+
+	<rule id="far_away">
+		<item>furthest</item>
+	</rule>
+
+	<rule id="want">
+		<one-of>
+			<item>want</item>
+			<item>would like</item>
+			<item>wish</item>
+		</one-of>
+	</rule>
+
+	<rule id="food_drink_desc">
+		<one-of>
+			<item>hot</item>
+			<item>cold</item>
+			<item>fast</item>
+			<item>cooked</item>
+			<item>local</item>
+			<item>chinese</item>
+			<item>italian</item>
+			<item>healthy</item>
+		</one-of>
+	</rule>
+
 </grammar>
