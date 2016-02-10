@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar 
+	root = "#top" 
+	tag-format = "semantics/1.0-literals" 
+	version = "1.0" 
+	xml:base: "userGrammar" 
+	xml:lang = "en" 
+	xmlns = "http://www.w3.org/2001/06/grammar"
+	xmlns:sapi= "http://schemas.microsoft.com/Speech/2002/06/SRGSExtensions"
+>
+	<!-- root element, the source of every possible user dialogue act -->
+	<rule id="#top">
+		<one-of>
+			<item><ruleref uri="request"/></item>
+			<item><ruleref uri="response"/></item>
+		</one-of>
+		<item repeat="0-1">
+			<ruleref uri="please"/>
+		</item>
+	</rule>
+
+	<rule id="please">
+		<one-of>
+			<item>please</item>
+			<item>kindly</item>
+		</one-of>
+	</rule>
+
+	<!-- root element for a user request -->
+	<rule id="request">
+		<item repeat="0-1">
+			<rulered uri="#greeting"/>
+		</item>
+		<oneof>
+			<item><ruleref uri="navigate"/></item>
+			<item><ruleref uri="browse"/></item>
+		</oneof>
+	</rule>
+
+	<!-- root element for a user response -->
+	<rule id="#response">
+		<one-of>
+			<item>
+				<one-of>
+					<item>
+						<one-of>
+							<item>which</item>
+							<item>where</item>
+						</one-of>
+						<item><ruleref uri="aux_verb"/></item>
+					</item>
+					<item>show me</item>
+				</one-of>
+				<item repeat="0-1">
+					<ruleref uri="det"/>
+				</item>
+				<item>
+					<ruleref uri="proximity"/>
+				</item>
+			</item>
+			<item><ruleref uri="confirm"/></item>
+			<item><ruleref uri="item"/></item>
+			<item><ruleref uri="food_drink_desc"/></item>
+		</one-of>
+	</rule>
+
+	<rule id="#polite">
+		<one-of>
+			<item>please</item>
+			<item>kindly</item>
+		</one-of>
+	</rule>
+
+	<rule id="#browse"></rule>
+
+	<rule id="#navigate"></rule>
+
+	<rule id="item">
+		<one-of>
+			<item>coffee</item>
+			<item>clothes</item>
+			<item>sandwiches</item>
+			<item>toys</item>
+			<item>music</item>
+			<item>jewellery</item>
+			<item>sports equipment</item>
+		</one-of>
+	</rule>
+
+</grammar>
