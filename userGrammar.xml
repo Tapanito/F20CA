@@ -29,7 +29,7 @@
 	<!-- root element for a user request -->
 	<rule id="request">
 		<item repeat="0-1">
-			<rulered uri="#greeting"/>
+			<rulered uri="greeting"/>
 		</item>
 		<oneof>
 			<item><ruleref uri="navigate"/></item>
@@ -38,7 +38,7 @@
 	</rule>
 
 	<!-- root element for a user response -->
-	<rule id="#response">
+	<rule id="response">
 		<one-of>
 			<item>
 				<one-of>
@@ -64,16 +64,42 @@
 		</one-of>
 	</rule>
 
-	<rule id="#polite">
+	<rule id="polite">
 		<one-of>
 			<item>please</item>
 			<item>kindly</item>
 		</one-of>
 	</rule>
 
-	<rule id="#browse"></rule>
+	<rule id="browse">
+		<one-of>
+			<item>what</item>
+			<item>how many</item>
+		</one-of>
+		<item repeat="0-1"><ruleref uri="shop_type"/></item>
+		<item>shops are</item>
+		<one-of>
+			<item>available</item>
+			<item>there</item>
+		</one-of>
+	</rule>
 
-	<rule id="#navigate"></rule>
+	<rule id="navigate">
+		<one-of>
+			<item>
+				<item>I</item> 
+				<item><ruleref uri="want"/></item> 
+				<item>to</item>
+				<item><ruleref uri="buy"/></item>
+				<item repeat="0-1"><ruleref uri="det"/></item>
+				<item><ruleref uri="item"/></item>
+			</item>
+			<item>
+				<item><ruleref uri="way"/></item>
+				<item><ruleref uri="place"/></item>
+			</item>
+		</one-of>
+	</rule>
 
 	<rule id="item">
 		<one-of>
@@ -84,6 +110,68 @@
 			<item>music</item>
 			<item>jewellery</item>
 			<item>sports equipment</item>
+		</one-of>
+	</rule>
+
+	<rule id="shop">
+		<one-of>
+			<item>coffee</item>
+			<item>clothes</item>
+			<item>sandwich</item>
+			<item>toy</item>
+			<item>music</item>
+			<item>jewellery</item>
+			<item>sports</item>
+		</one-of>
+	</rule>
+
+	<rule id="greeting">
+		<one-of>
+			<item>hello</item>
+			<item>hi</item>
+			<item>hey</item>
+		</one-of>
+	</rule>
+
+	<rule id="confirm">
+		<one-of>
+			<item><ruleref uri="yes"/></item>
+			<item><ruleref uri="no"/></item>
+		</one-of>
+	</rule>
+
+	<rule id="yes">
+		<item repeat="1-">
+			<one-of>
+				<item>yes</item>
+				<item>yeah</item>
+				<item>yep</item>
+				<item>okay</item>
+			</one-of>
+		</item>
+	</rule>
+
+	<rule id="no">
+		<item repeat="1-">
+			<one-of>
+				<item>no</item>
+				<item>nah</item>
+				<item>not really</item>
+				<item>nope</item>
+			</one-of>
+		</item>
+	</rule>
+
+	<rule id="aux_verb">
+		<item>is</item>
+	</rule>
+
+	<rule id="det">
+		<one-of>
+			<item>a</item>
+			<item>an</item>
+			<item>the</item>
+			<item>some</item>
 		</one-of>
 	</rule>
 
