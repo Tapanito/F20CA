@@ -113,7 +113,7 @@
 		</one-of>
 	</rule>
 
-	<rule id="shop">
+	<rule id="shop_type">
 		<one-of>
 			<item>coffee</item>
 			<item>clothes</item>
@@ -212,6 +212,64 @@
 			<item>italian</item>
 			<item>healthy</item>
 		</one-of>
+	</rule>
+
+	<rule id="buy">
+		<one-of>
+			<item>buy</item>
+			<item>purchase</item>
+			<item>get</item>
+		</one-of>
+	</rule>
+
+	<rule id="place">
+		<item><ruleref uri="det"/></item>
+		<one-of>
+			<item><ruleref uri="shop"/></item>
+			<item><ruleref uri="amenity"/></item>
+			<item><ruleref uri="proximity"/></item>
+		</one-of>
+	</rule>
+
+	<rule id="amenity">
+		<one-of>
+			<item>
+				<item repeat="0-1">
+					<one-of>
+						<item>mens</item>
+						<item>womens</item>
+					</one-of>
+				</item>
+				<item>toilet</item>
+			</item>
+			<item>exit</item>
+		</one-of>
+	</rule>
+
+	<rule id="direction">
+		<one-of>
+			<item>how to get</item>
+			<item>
+				<item>the</item>
+				<one-of>
+					<item>way</item>
+					<item>direction</item>
+				</one-of>
+			</item>
+		</one-of>
+	</rule>
+
+	<rule id="explain">
+		<one-of>
+			<item>explain to</item>
+			<item>tell</item>
+		</one-of>
+		<item>me</item>
+	</rule>
+
+	<rule id="shop">
+		<item repeat="0-1"><ruleref uri="shop_type"/></item>
+		<item>shop</item>
 	</rule>
 
 </grammar>
