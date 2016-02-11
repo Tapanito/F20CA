@@ -6,8 +6,8 @@
 	xml:base: "userGrammar" 
 	xml:lang = "en" 
 	xmlns = "http://www.w3.org/2001/06/grammar"
-	xmlns:sapi= "http://schemas.microsoft.com/Speech/2002/06/SRGSExtensions"
->
+	xmlns:sapi= "http://schemas.microsoft.com/Speech/2002/06/SRGSExtensions">
+
 	<!-- root element, the source of every possible user dialogue act -->
 	<rule id="#top">
 		<one-of>
@@ -15,7 +15,7 @@
 			<item><ruleref uri="response"/></item>
 		</one-of>
 		<item repeat="0-1">
-			<ruleref uri="please"/>
+			<ruleref uri="#please"/>
 		</item>
 	</rule>
 
@@ -29,11 +29,11 @@
 	<!-- root element for a user request -->
 	<rule id="request">
 		<item repeat="0-1">
-			<rulered uri="greeting"/>
+			<rulered uri="#greeting"/>
 		</item>
 		<oneof>
-			<item><ruleref uri="navigate"/></item>
-			<item><ruleref uri="browse"/></item>
+			<item><ruleref uri="#navigate"/></item>
+			<item><ruleref uri="#browse"/></item>
 		</oneof>
 	</rule>
 
@@ -47,20 +47,20 @@
 							<item>which</item>
 							<item>where</item>
 						</one-of>
-						<item><ruleref uri="aux_verb"/></item>
+						<item><ruleref uri="#aux_verb"/></item>
 					</item>
 					<item>show me</item>
 				</one-of>
 				<item repeat="0-1">
-					<ruleref uri="det"/>
+					<ruleref uri="#det"/>
 				</item>
 				<item>
-					<ruleref uri="proximity"/>
+					<ruleref uri="#proximity"/>
 				</item>
 			</item>
-			<item><ruleref uri="confirm"/></item>
-			<item><ruleref uri="item"/></item>
-			<item><ruleref uri="food_drink_desc"/></item>
+			<item><ruleref uri="#confirm"/></item>
+			<item><ruleref uri="#item"/></item>
+			<item><ruleref uri="#food_drink_desc"/></item>
 		</one-of>
 	</rule>
 
@@ -76,7 +76,7 @@
 			<item>what</item>
 			<item>how many</item>
 		</one-of>
-		<item repeat="0-1"><ruleref uri="shop_type"/></item>
+		<item repeat="0-1"><ruleref uri="#shop_type"/></item>
 		<item>shops are</item>
 		<one-of>
 			<item>available</item>
@@ -88,15 +88,15 @@
 		<one-of>
 			<item>
 				<item>I</item> 
-				<item><ruleref uri="want"/></item> 
+				<item><ruleref uri="#want"/></item> 
 				<item>to</item>
-				<item><ruleref uri="buy"/></item>
-				<item repeat="0-1"><ruleref uri="det"/></item>
-				<item><ruleref uri="item"/></item>
+				<item><ruleref uri="#buy"/></item>
+				<item repeat="0-1"><ruleref uri="#det"/></item>
+				<item><ruleref uri="#item"/></item>
 			</item>
 			<item>
-				<item><ruleref uri="way"/></item>
-				<item><ruleref uri="place"/></item>
+				<item><ruleref uri="#way"/></item>
+				<item><ruleref uri="#place"/></item>
 			</item>
 		</one-of>
 	</rule>
@@ -135,8 +135,8 @@
 
 	<rule id="confirm">
 		<one-of>
-			<item><ruleref uri="yes"/></item>
-			<item><ruleref uri="no"/></item>
+			<item><ruleref uri="#yes"/></item>
+			<item><ruleref uri="#no"/></item>
 		</one-of>
 	</rule>
 
@@ -177,8 +177,8 @@
 
 	<rule id="proximity">
 		<one-of>
-			<item><ruleref uri="close_by"/></item>
-			<item><ruleref uri="far_away"/></item>
+			<item><ruleref uri="#close_by"/></item>
+			<item><ruleref uri="#far_away"/></item>
 		</one-of>
 	</rule>
 
@@ -223,11 +223,11 @@
 	</rule>
 
 	<rule id="place">
-		<item><ruleref uri="det"/></item>
+		<item><ruleref uri="#det"/></item>
 		<one-of>
-			<item><ruleref uri="shop"/></item>
-			<item><ruleref uri="amenity"/></item>
-			<item><ruleref uri="proximity"/></item>
+			<item><ruleref uri="#shop"/></item>
+			<item><ruleref uri="#amenity"/></item>
+			<item><ruleref uri="#proximity"/></item>
 		</one-of>
 	</rule>
 
@@ -268,7 +268,7 @@
 	</rule>
 
 	<rule id="shop">
-		<item repeat="0-1"><ruleref uri="shop_type"/></item>
+		<item repeat="0-1"><ruleref uri="#shop_type"/></item>
 		<item>shop</item>
 	</rule>
 
@@ -282,13 +282,13 @@
 					</one-of>
 					<item>you</item>
 				</item>
-				<item><ruleref uri="explain"/></item>
-				<item><ruleref uri="direction"/></item>
+				<item><ruleref uri="#explain"/></item>
+				<item><ruleref uri="#direction"/></item>
 				<item>to</item>
 			</item>
 			<item>
 				<item>Where</item>
-				<item><ruleref uri="aux_verb"/></item>
+				<item><ruleref uri="#aux_verb"/></item>
 			</item>
 		</one-of>
 	</rule>
