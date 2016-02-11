@@ -272,4 +272,25 @@
 		<item>shop</item>
 	</rule>
 
+	<rule id="way">
+		<one-of>
+			<item>
+				<item repeat="0-1">
+					<one-of>
+						<item>Can</item>
+						<item>Could</item>
+					</one-of>
+					<item>you</item>
+				</item>
+				<item><ruleref uri="explain"/></item>
+				<item><ruleref uri="direction"/></item>
+				<item>to</item>
+			</item>
+			<item>
+				<item>Where</item>
+				<item><ruleref uri="aux_verb"/></item>
+			</item>
+		</one-of>
+	</rule>
+
 </grammar>
