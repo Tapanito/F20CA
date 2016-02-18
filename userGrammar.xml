@@ -11,8 +11,8 @@
 	<!-- root element, the source of every possible user dialogue act -->
 	<rule id="#top">
 		<one-of>
-			<item><ruleref uri="request"/></item>
-			<item><ruleref uri="response"/></item>
+			<item><ruleref uri="#request"/></item>
+			<item><ruleref uri="#response"/></item>
 		</one-of>
 		<item repeat="0-1">
 			<ruleref uri="#please"/>
@@ -125,6 +125,15 @@
 		</one-of>
 	</rule>
 
+	<rule id="shop_name">
+		<one-of>
+			<item>astrodollars</item>
+			<item>caffe augustus</item>
+			<item>sports indirect</item>
+			<item>space</item>
+			<item>underground train station</item>
+		</one-of>
+
 	<rule id="greeting">
 		<one-of>
 			<item>hello</item>
@@ -141,7 +150,7 @@
 	</rule>
 
 	<rule id="yes">
-		<item repeat="1-">
+		<item repeat="1-"> <tag> out="Yes"; </tag>
 			<one-of>
 				<item>yes</item>
 				<item>yeah</item>
