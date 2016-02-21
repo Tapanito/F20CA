@@ -11,13 +11,12 @@
 	<!-- root element, the source of every possible agent dialogue act -->
 	<rule id="#top">
 		<one-of>
-			<item><ruleref uri="#request"/></item> 
-
-			<item><ruleref uri="#response"/></item>
+			<item><ruleref uri="#shop_info"/></item>
+			<item><ruleref uri="#route_info"/></item> 
+			<item><ruleref uri="#req_sub"/></item>
+			<item><ruleref uri="#opening"/></item> 
+			<item><ruleref uri="#closing"/></item> 
 		</one-of>
-		<item repeat="0-1">
-			<ruleref uri="#please"/>
-		</item>
 	</rule>
 
 	<rule id="polite">
@@ -61,6 +60,31 @@
 
 	<rule id="req_sub">
 		
+	</rule>
+
+	<rule id="route_info">
+		
+	</rule>
+
+	<rule id="side_dir">
+		<one-of>
+			<item>left</left>
+			<item>right</right>
+		</one-of>
+	</rule>
+
+	<rule id="fwd_back">
+		<one-of>
+			<item>forward</left>
+			<item>backward</right>
+		</one-of>
+	</rule>
+
+	<rule id="whereabouts">
+		<one-of>
+			<item>in front of</left>
+			<item>behind</right>
+		</one-of>
 	</rule>
 
 	<rule id="num">
