@@ -7,3 +7,79 @@
 	xml:lang = "en" 
 	xmlns = "http://www.w3.org/2001/06/grammar"
 	xmlns:sapi= "http://schemas.microsoft.com/Speech/2002/06/SRGSExtensions">
+
+	<!-- root element, the source of every possible agent dialogue act -->
+	<rule id="#top">
+		<one-of>
+			<item><ruleref uri="#request"/></item> 
+
+			<item><ruleref uri="#response"/></item>
+		</one-of>
+		<item repeat="0-1">
+			<ruleref uri="#please"/>
+		</item>
+	</rule>
+
+	<rule id="polite">
+		<one-of>
+			<item>please</item>
+			<item>kindly</item>
+		</one-of>
+	</rule>
+
+	<!-- dialogue act for when the user turns the system on (e.g. "Okay Google") -->
+	<rule id="greeting">
+		<one-of>
+			<item>hi</item>
+			<item>hello</item>
+		</one-of>
+		<item>how can I help you</item>
+	</rule>
+
+	<!-- auto-response after user has made a closing statement -->
+	<rule id="closing">
+		<item>let me know if you have any further requests</item>
+	</rule>
+
+	<rule id="shop_info">
+		<one-of>
+			<item>
+				there are
+				<ruleref uri="#num"/>
+				shops which sell
+				<ruleref uri="#item"/>
+			</item>
+			<item>
+				there is one shop which sells
+				<ruleref uri="#item"/>
+			</item>
+			<item>
+				there are no shops available which match that description
+			</item>
+		</one-of>
+	</rule>
+
+	<rule id="req_sub">
+		
+	</rule>
+
+	<rule id="num">
+		<one-of>
+			<item>two</item>
+			<item>three</item>
+		</one-of>
+	</rule>
+
+	<rule id="item">
+		<one-of>
+			<item>coffee</item>
+			<item>clothes</item>
+			<item>sandwiches</item>
+			<item>toys</item>
+			<item>music</item>
+			<item>jewellery</item>
+			<item>sports equipment</item>
+		</one-of>
+	</rule>
+
+</grammar>
