@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<grammar xml:lang="en-GB" root="colorChooser"
+tag-format="semantics/1.0" version="1.0"
+xmlns="http://www.w3.org/2001/06/grammar">
+	<rule id="#top">
+		<one-of>
+			<item><ruleref uri="#request"/></item>
+			<tag> out.RESULT=rules.latest();</tag>
+			<!-- <item><ruleref uri="#response"/></item> -->
+		</one-of>
+		<!-- <item repeat="0-1">
+			<ruleref uri="#please"/>
+		</item> -->
+	</rule>
+
+	<!-- root element for a user request -->
+	<rule id="request">
+		<item repeat="0-1">
+			<rulered uri="#greeting"/>
+		</item>
+		<oneof>
+			<item>
+				<ruleref uri="#navigate"/>
+				<!-- set the action -->
+				<tag> out.ACTION="1";</tag>
+				<tag> out.DESTINATION=rules.latest(); </tag>
+			</item>
+			<!-- <item><ruleref uri="#browse"/></item> -->
+		</oneof>
+	</rule>
+
+
+
+	<rule id="navigate">
+		<one-of>
+			<item>
+				<item>I want to buy a </item> 
+				<!-- <item><ruleref uri="#want"/></item> 
+				<item>to</item>
+				<item><ruleref uri="#buy"/></item> 
+				<item repeat="0-1"><ruleref uri="#det"/></item>
+				-->
+				<item>
+					<ruleref uri="#item"/>
+				</item>
+
+			</item>
+			<!-- 
+			<item>
+				<item><ruleref uri="#way"/></item>
+				<item><ruleref uri="#place"/></item>
+			</item> 
+			-->
+		</one-of>
+	</rule>
+	
+	<rule id="buy">
+		<one-of>
+			<item>buy</item>
+			<item>purchase</item>
+			<item>get</item>
+		</one-of>
+	</rule>
+
+	<rule id="item">
+		<one-of>
+			<item>coffee<tag>out="COFFEE"</tag></item>
+			<!-- <item>clothes<tag>out="COFFEE"</tag></item>
+			<item>sandwiches<tag>out="COFFEE"</tag></item>
+			<item>toys<tag>out="COFFEE"</tag></item>
+			<item>music</item>
+			<item>jewellery</item>
+			<item>sports equipment</item> -->
+		</one-of>
+	</rule>
+
+</grammar>

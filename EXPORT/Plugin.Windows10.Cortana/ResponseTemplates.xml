@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<response-set>
+	<response type="greeting">
+		<item>
+			"Hello how can I help you?"
+		</item>
+		<item>
+			"Hi, what can I do for you?"
+		</item>
+		<item>
+			"Hello, how can I help you today?"
+		</item>
+	</response>
+	<response type="destination">
+		<item>
+			"The $DEST_NAME $DESTINATION has been highlighted on the map"
+		</item>
+	</response>
+</response-set>

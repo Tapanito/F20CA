@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<grammar xml:lang="en-GB" root="main"
+tag-format="semantics/1.0" version="1.0"
+xmlns="http://www.w3.org/2001/06/grammar">
+
+  <!-- The following three rules recognize phrases where a user describes what color an -->
+  <!-- individual property should be. For example "blue background" or "green circle". -->
+
+  <rule id="request">
+    <item>
+      <ruleref uri="#navigate"/>
+      <tag> out.ACTION="DESTINATION";</tag>
+      <tag> out.DESTINATION=rules.latest();</tag>
+      <!-- <tag> out.DESTINATION="COFFEE_SHOP";</tag> -->
+    </item>
+  </rule>
+
+   
+  <rule id="navigate">
+    <one-of>
+      <item>
+        <item> <ruleref uri="#subject"/> </item>
+        <item> <ruleref uri="#verb" /> to </item>
+        <item> <ruleref uri="#buy"/> </item>
+        <item repeat="0-1"> <ruleref uri="#det"/> </item>
+        <item> <ruleref uri="#item" /> </item>
+      </item>
+      <item>
+        <item> <ruleref uri="#subject"/> </item>
+        <item> <ruleref uri="#ppverb"/> for </item>
+        <item repeat="0-1"> <ruleref uri="#det"/> </item>
+        <item> <ruleref uri="#item" /> shop </item>
+      </item>
+      <item>
+        <item>
+          <ruleref uri="#direction"/>
+          <ruleref uri ="#destination"/>
+        </item>
+      </item>
+    </one-of>
+  </rule>
+  
+  <rule id="destination">
+		<item repeat ="0-1"><ruleref uri="#det"/></item>
+		<one-of>
+			<item><ruleref uri="#shop"/></item>
+			<!--<item><ruleref uri="#amenity"/></item>
+			<item><ruleref uri="#proximity"/></item>
+      -->
+		</one-of>
+	</rule>
+  
+    <rule id="shop">
+      <one-of>
+        <item>
+          <item repeat="0-1"> <ruleref uri="#shop_name"/> out.DEST_NAME=rules.latest()</item>
+          <item repeat="0-1"><ruleref uri="#item"/></item>
+          <item>shop</item>
+        </item>
+      <item> <ruleref uri="#shop_name"/> <tag>out.DEST_NAME=rules.latest()</tag></item>
+    </one-of>
+	</rule>
+  
+  <rule id="explain">
+		<one-of>
+			<item> explain to </item>
+			<item> tell </item>
+		</one-of>
+		<item> me </item>
+	</rule>
+    
+  <rule id="dir">
+		<one-of>
+			<item>how to get</item>
+			<item>
+				<item>the</item>
+				<one-of>
+					<item>way</item>
+					<item>direction</item>
+				</one-of>
+			</item>
+		</one-of>
+	</rule>
+        
+  <rule id="direction">
+		<one-of>
+			<!--<item>
+				<item repeat="0-1">
+					<one-of>
+						<item>can</item>
+						<item>could</item>
+					</one-of>
+					<item>you</item>
+				</item>
+				<item> <ruleref uri="#explain"/> </item>
+				<item><ruleref uri="#dir"/></item>
+				<item> to </item>
+			</item>-->
+			<item>
+				<item> where </item>
+				<item> is </item>
+			</item>
+		</one-of>
+	</rule>
+  
+
+  <rule id="subject">
+    <one-of>
+      <item> I </item>
+      <item> I'm </item>
+      <item> I am</item>
+      <item>I'd </item>
+    <item> I would</item>
+    </one-of>
+  </rule>
+
+  <rule id="verb">
+    <one-of>
+      <item> want</item>
+      <item> like </item>
+    </one-of>
+  </rule>
+  
+  <rule id="det">
+    <one-of>
+      <item>a</item>
+      <item>an</item>
+      <item>the</item>
+      <item>some</item>
+    </one-of>
+  </rule>
+ 
+  <rule id="buy">
+		<one-of>
+			<item>buy</item>
+			<item>purchase</item>
+			<item>get</item>
+		</one-of>
+	</rule>
+    
+   <rule id="ppverb">
+    <one-of>
+      <item>
+        looking
+      </item>
+    </one-of>
+  </rule>
+  <rule id="item">
+    <one-of>
+      <item>
+        coffee <tag> out="COFFEE_SHOP"; </tag>
+      </item>
+      <item>
+        shoe <tag> out="SHOE_SHOP"; </tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="shop_name">
+    <one-of>
+      <item> starbucks <tag> out="starbucks";</tag> </item>
+      <item> step up <tag> out="step up";</tag> </item>
+    <item> next <tag> out="next";</tag> </item>
+    </one-of>
+  </rule>
+  
+  <rule id="greeting">
+    <one-of>
+      <item>
+        Hello
+        <tag> out.ACTION="GREETING";</tag>
+      </item>
+    </one-of>
+  </rule>
+  <!-- The following rule is the root rule. It allows the user to set the color of any permutation of one, two, or three -->
+  <!-- properties in a single phrase. The outer one-of element determines the first property spoken and then further -->
+  <!-- determines whether that was the first-of-one, first-of-two, or first-of-three properties in the phrase. -->
+  <!-- Twelve color names are recognized (see the rule with id "color"), therefore there are 3 * 12^1 ways of setting a single -->
+  <!-- property, 6 * 12^2 ways of setting two properties, and 6 * 12^3 ways of setting three properties. In total, that's -->
+  <!-- 11,268 permutations. -->
+
+  <rule id="main">
+    <one-of>
+      <item>
+        <item>
+          <ruleref uri="#greeting"/>
+        </item>
+      </item>
+      <item>
+        <item>
+          <ruleref uri="#request"/>
+        </item>
+      </item>
+    </one-of>
+  </rule>
+
+</grammar>

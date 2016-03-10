@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="CommandSet_en-us">
+    <AppName> Bot World </AppName>
+    <Example> Bot World, I want to play </Example>
+
+    <Command Name="checkScore">
+      <Example> Bot World, Did anyone beat me? </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Did anyone beat me </ListenFor>
+      <Feedback> Yes.</Feedback>
+      <VoiceCommandService Target="BotWorldVoiceCommandService"></VoiceCommandService>
+    </Command>
+
+    <Command Name="startPlay">
+      <Example> Bot World, I want to play </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> I want to play </ListenFor>
+      <Feedback> Get ready! </Feedback>
+      <Navigate/>
+    </Command>
+  </CommandSet>
+
+</VoiceCommands>
