@@ -16,20 +16,26 @@ public class colourMeIn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log (player.position);
-		Renderer rend = GetComponent<Renderer> ();
-		rend.material.color = Color.red;
 
-		closeEnough = false;
+		//here need to call from a database (lookup) to check if the current shop is the one requested
+		bool req = false;
 
-		if (Vector3.Distance (player.position, transform.position) <= detectionRange) {
-			closeEnough = true;
-		}
+		if (req == true) {
+			//Debug.Log (player.position);
+			Renderer rend = GetComponent<Renderer> ();
+			rend.material.color = Color.red;
 
-		if (closeEnough == true) {
-			rend = GetComponent<Renderer> ();
-			rend.material.color = Color.green;
-			Debug.Log ("Reached the Underground Train Station");
+			closeEnough = false;
+
+			if (Vector3.Distance (player.position, transform.position) <= detectionRange) {
+				closeEnough = true;
+			}
+
+			if (closeEnough == true) {
+				rend = GetComponent<Renderer> ();
+				rend.material.color = Color.green;
+				Debug.Log ("You have arrived at " + transform.name);
+			}
 		}
 	}
 }
